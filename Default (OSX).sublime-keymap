@@ -1,0 +1,20 @@
+[
+  {
+    "keys": [
+      "super+shift+]"
+    ],
+    "command": "bbedit_indent",
+    "args": {
+      "action": "indent"
+    }
+  },
+  {
+    "keys": [
+      "super+shift+["
+    ],
+    "command": "bbedit_indent",
+    "args": {
+      "action": "unindent"
+    }
+  }
+]
