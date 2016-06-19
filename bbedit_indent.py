@@ -25,7 +25,7 @@ class BbeditIndentCommand(sublime_plugin.TextCommand):
                     char = view.substr(pt)
 
                 # ignore blank lines
-                if view.rowcol(pt+1)[0] != view.rowcol(line.begin())[0]:
+                if view.rowcol(pt + 1)[0] != view.rowcol(line.begin())[0]:
                     continue
 
                 points.append(pt)
@@ -35,8 +35,9 @@ class BbeditIndentCommand(sublime_plugin.TextCommand):
                 if action == 'indent':
                     view.insert(edit, pt + pt_count, ' ')
                     # check if last inserted characters can be converted to a tab
-                    if not use_spaces and view.substr(sublime.Region(pt + pt_count - (tab_size - 1),pt + pt_count+1)) == ' ' * tab_size:
-                        view.replace(edit,sublime.Region(pt + pt_count - (tab_size - 1),pt + pt_count + 1),'\t')
+                    selected_text = view.substr(sublime.Region(pt + pt_count - (tab_size - 1), pt + pt_count + 1))
+                    if not use_spaces and selected_text == ' ' * tab_size:
+                        view.replace(edit, sublime.Region(pt + pt_count - (tab_size - 1), pt + pt_count + 1), '\t')
                         pt_count -= tab_size - 1
                     pt_count += 1
                 elif action == 'unindent':
@@ -48,13 +49,13 @@ class BbeditIndentCommand(sublime_plugin.TextCommand):
 
                         # replace tab with spaces
                         if view.substr(start) == '\t':
-                            view.replace(edit,sublime.Region(start,end),' ' * (tab_size - 1))
+                            view.replace(edit, sublime.Region(start, end), ' ' * (tab_size - 1))
                             pt_count -= tab_size - 2
                         else:
-                            view.erase(edit, sublime.Region(start,end))
+                            view.erase(edit, sublime.Region(start, end))
                             pt_count += 1
 
                     # remove one space if available
                     elif view.rowcol(start)[0] == view.rowcol(start + 1)[0]:
-                        view.erase(edit, sublime.Region(start,start + 1))
+                        view.erase(edit, sublime.Region(start, start + 1))
                         pt_count += 1
