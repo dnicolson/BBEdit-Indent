@@ -44,6 +44,10 @@ class BbeditIndentCommand(sublime_plugin.TextCommand):
                     start = pt - pt_count - 1
                     end = pt - pt_count
 
+                    # continue if point is at the left most position
+                    if view.rowcol(end)[1] == 0:
+                        continue
+
                     # remove spaces if available
                     if view.rowcol(start)[0] == view.rowcol(end)[0]:
 
