@@ -4,21 +4,18 @@ import unittest
 
 version = sublime.version()
 
-class BbeditIndentWriteBuffer(sublime_plugin.TextCommand):
-    def run(self, edit, text=''):
-        self.view.replace(edit, sublime.Region(0, self.view.size()), text)
-
 class TestBbeditIndentCommand(unittest.TestCase):
     def setUp(self):
         self.view = sublime.active_window().new_file()
-        settings = sublime.load_settings("Preferences.sublime-settings")
-        settings.set("close_windows_when_empty", False)
+        settings = sublime.load_settings('Preferences.sublime-settings')
+        settings.set('close_windows_when_empty', False)
+        settings.set('translate_tabs_to_spaces', True)
 
     def tearDown(self):
         if self.view:
             self.view.set_scratch(True)
             self.view.window().focus_view(self.view)
-            self.view.window().run_command("close_file")
+            self.view.window().run_command('close_file')
 
     def write_text(self, text):
         self.view.run_command('bbedit_indent_write_buffer', {'text': text})
@@ -52,4 +49,4 @@ class TestBbeditIndentCommand(unittest.TestCase):
         text = self.get_text()
         self.assertEqual(fixture_after, text)
 
-bbedit_indent = sys.modules["BBEdit-Indent.bbedit_indent"]
+bbedit_indent = sys.modules['BBEdit-Indent.bbedit_indent']

@@ -1,5 +1,9 @@
 import sublime, sublime_plugin
 
+class BbeditIndentWriteBuffer(sublime_plugin.TextCommand):
+    def run(self, edit, text=''):
+        self.view.replace(edit, sublime.Region(0, self.view.size()), text)
+
 class BbeditIndentCommand(sublime_plugin.TextCommand):
     def run(self, edit, action):
         view = self.view
