@@ -1,4 +1,4 @@
-#BBEdit Indent
+# BBEdit Indent
 
 A Sublime Text 3 package that enables text indentation by a single character at a time.
 
