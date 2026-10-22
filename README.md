@@ -8,7 +8,7 @@ Installation is performed via [Package Control](https://packagecontrol.io/).
 
 ## Usage
 
-Normal indentation is performed by `cmd-[` and `cmd-]`, to indent by a single character shift is added: `cmd-shift-[` or `cmd-shift-]`. This overrides the the `prev_view` and `next_view` commands (`cmd-alt-left` and `cmd-alt-right` continue to be used for the `prev_view` and `next_view` commands).
+Normal indentation is performed by `cmd-[` and `cmd-]`. To indent by a single character, add shift: `cmd-shift-[` or `cmd-shift-]` on macOS, and `alt-shift-[` or `alt-shift-]` on Windows and Linux.
 
 This matches the behaviour of [BBEdit](http://www.barebones.com/products/bbedit/) and [TextWrangler](http://www.barebones.com/products/textwrangler/).
 
