@@ -29,7 +29,7 @@ class BbeditIndentCommand(sublime_plugin.TextCommand):
                     char = view.substr(pt)
 
                 # ignore blank lines
-                if view.rowcol(pt + 1)[0] != view.rowcol(line.begin())[0]:
+                if pt >= line.end():
                     continue
 
                 points.append(pt)

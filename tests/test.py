@@ -40,6 +40,12 @@ class TestBbeditIndentCommand(unittest.TestCase):
         text = self.get_text()
         self.assertEqual(fixture_after, text)
 
+    def test_indent_whitespace_only_last_line_without_newline(self):
+        self.write_text('a\n  ')
+        self.select_all()
+        self.view.run_command('bbedit_indent', {'action': 'indent'})
+        self.assertEqual(' a\n  ', self.get_text())
+
     def test_unindent(self):
         fixture_before = self.fixture('test-1.txt')
         fixture_after = self.fixture('test-1-unindent.txt')
